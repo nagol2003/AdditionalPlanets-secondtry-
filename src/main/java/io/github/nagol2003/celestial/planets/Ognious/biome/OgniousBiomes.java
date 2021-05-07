@@ -2,7 +2,6 @@ package io.github.nagol2003.celestial.planets.Ognious.biome;
 
 import java.util.Random;
 
-import io.github.nagol2003.celestial.planets.Ognious.BiomeDecoratorOther;
 import io.github.nagol2003.celestial.planets.Ognious.biome.gen.BiomeOgnious;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.material.Material;
@@ -23,7 +22,11 @@ public class OgniousBiomes extends BiomeGenBaseGC {
 
 	@Override
 	public BiomeDecorator createBiomeDecorator() {
-		return new BiomeDecoratorOther();
+		return new BiomeDecoratorOgnious();
+	}
+
+	protected BiomeDecoratorOgnious getBiomeDecorator() {
+		return (BiomeDecoratorOgnious) this.decorator;
 	}
 
 	@Override

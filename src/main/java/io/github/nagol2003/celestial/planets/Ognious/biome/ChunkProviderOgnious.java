@@ -10,63 +10,49 @@ import io.github.nagol2003.init.InitBlocks;
 import io.github.nagol2003.util.world.MapGenAddonCaveGen;
 import io.github.nagol2003.util.world.MapGenAddonRavinGen;
 import io.github.nagol2003.util.world.MapGenBaseMeta;
-import io.github.nagol2003.util.world.chunk.ChunkProviderAP;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.GCFluids;
-import micdoodle8.mods.galacticraft.core.blocks.BlockFluidGC;
+import io.github.nagol2003.world.chunk.ChunkProviderMultiBiome;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 
-public class ChunkProviderOgnious extends ChunkProviderAP {
+public class ChunkProviderOgnious extends ChunkProviderMultiBiome {
 
-    private final BiomeDecoratorOgnious decorator = new BiomeDecoratorOgnious();
-    private final MapGenAddonRavinGen ravineGenerator = new MapGenAddonRavinGen();
-    private final MapGenAddonCaveGen caveGenerator = new MapGenAddonCaveGen(Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.LAVA.getDefaultState(),
-            Sets.newHashSet(Blocks.HARDENED_CLAY, Blocks.BLACK_GLAZED_TERRACOTTA));
-    
-    private static IBlockState stoneBlockState = InitBlocks.OGNIOUSSTONE.getDefaultState();
+	private final MapGenAddonRavinGen ravineGenerator = new MapGenAddonRavinGen();
+	private final MapGenAddonCaveGen caveGenerator = new MapGenAddonCaveGen(Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.LAVA.getDefaultState(),
+			Sets.newHashSet(Blocks.HARDENED_CLAY, Blocks.BLACK_GLAZED_TERRACOTTA));
 
-    public ChunkProviderOgnious(World par1World, long seed, boolean mapFeaturesEnabled) {
-        super(par1World, seed, mapFeaturesEnabled);
-        this.stoneBlock = stoneBlockState;
-        this.waterBlock = Blocks.WATER.getDefaultState();
-    }
+	private static IBlockState stoneBlockState = InitBlocks.OGNIOUSSTONE.getDefaultState();
 
-    @Override
-    protected List<MapGenBaseMeta> getWorldGenerators() {
-        List<MapGenBaseMeta> generators = Lists.newArrayList();
-        generators.add(this.caveGenerator);
-        return generators;
-    }
+	public ChunkProviderOgnious(World par1World, long seed, boolean mapFeaturesEnabled) {
+		super(par1World, seed, mapFeaturesEnabled);
+		ChunkProviderMultiBiome.stoneBlock = stoneBlockState;
+		ChunkProviderMultiBiome.waterBlock = Blocks.WATER.getDefaultState();
+	}
 
-    @Override
-    public int getCraterProbability() {
-        return 2000;
-    }
+	@Override
+	protected List<MapGenBaseMeta> getWorldGenerators() {
+		List<MapGenBaseMeta> generators = Lists.newArrayList();
+		generators.add(this.caveGenerator);
+		return generators;
+	}
 
-    @Override
-    public void onChunkProvide(int cX, int cZ, ChunkPrimer primer) {
-        this.ravineGenerator.generate(this.worldObj, cX, cZ, primer);
-    }
+	@Override
+	public void onChunkProvide(int cX, int cZ, ChunkPrimer primer) {
+		this.ravineGenerator.generate(this.worldObj, cX, cZ, primer);
+	}
 
-    @Override
-    public void onPopulate(int cX, int cZ) {
+	@Override
+	public void recreateStructures(Chunk chunk, int x, int z) {
+	}
 
-    }
+	@Override
+	protected void decoratePlanet(World world, Random rand, int x, int z) {
 
-    @Override
-    public void recreateStructures(Chunk chunk, int x, int z) {
-    }
+	}
 
-    @Override
-    protected void decoratePlanet(World world, Random rand, int x, int z) {
-        this.decorator.decorate(this.worldObj, rand, x, z);
-    }
-    
-    public static IBlockState getStoneBlockState() {
-    	return stoneBlockState;
-    }
+	public static IBlockState getStoneBlockState() {
+		return stoneBlockState;
+	}
 }

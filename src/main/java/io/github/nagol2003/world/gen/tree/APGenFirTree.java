@@ -15,7 +15,7 @@ public class APGenFirTree extends APGenTreeBase {
 	private IBlockState  stateLeaves;
 
 	public APGenFirTree(boolean isWorldGen, int minTreeHeight, IBlockState stateWood, IBlockState stateLeaves) {
-		super(!isWorldGen);
+		super(true);
 		this.isWorldGen    = isWorldGen;
 		this.minTreeHeight = minTreeHeight;
 		this.stateWood = stateWood;
@@ -50,7 +50,7 @@ public class APGenFirTree extends APGenTreeBase {
 
 							if (!state.getBlock().isAir(state, worldIn, blockpos$mutableblockpos.setPos(k1, i1, l1))
 									&& !state.getBlock()
-											.isLeaves(state, worldIn, blockpos$mutableblockpos.setPos(k1, i1, l1))) {
+									.isLeaves(state, worldIn, blockpos$mutableblockpos.setPos(k1, i1, l1))) {
 								flag = false;
 							}
 						}

@@ -16,16 +16,17 @@ public class BiomeOgnious extends OgniousBiomes {
 
 	public BiomeOgnious(BiomeProperties properties) {
 		super(properties);
-        this.topBlock = InitBlocks.OGNIOUSGRASS.getDefaultState(); //TODO change this
-        this.fillerBlock = InitBlocks.OGNIOUSROCK.getDefaultState(); //TODO change this
-        this.spawnableMonsterList.clear();
-        this.spawnableCreatureList.clear();
-        this.spawnableWaterCreatureList.clear();
+		this.topBlock = InitBlocks.OGNIOUSGRASS.getDefaultState(); //TODO change this
+		this.fillerBlock = InitBlocks.OGNIOUSROCK.getDefaultState(); //TODO change this
+		this.spawnableMonsterList.clear();
+		this.spawnableCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.getBiomeDecorator().treesPerChunk = 4;
 	}
 
 	@Override
 	public void registerTypes(Biome b) {
-            BiomeDictionary.addTypes(b, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.SANDY);
+		BiomeDictionary.addTypes(b, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.SANDY);
 
 	}
 	@Override

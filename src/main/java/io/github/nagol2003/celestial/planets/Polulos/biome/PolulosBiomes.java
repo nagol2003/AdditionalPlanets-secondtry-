@@ -2,9 +2,9 @@ package io.github.nagol2003.celestial.planets.Polulos.biome;
 
 import java.util.Random;
 
-import io.github.nagol2003.celestial.planets.Polulos.BiomeDecoratorOther;
-import io.github.nagol2003.celestial.planets.Polulos.biome.gen.BiomePolulosSavanna;
+import io.github.nagol2003.celestial.planets.Polulos.BiomeDecoratorPolulos;
 import io.github.nagol2003.celestial.planets.Polulos.biome.gen.BiomePolulosDesert;
+import io.github.nagol2003.celestial.planets.Polulos.biome.gen.BiomePolulosSavanna;
 //import io.github.nagol2003.celestial.planets.Polulos.biome.gen.BiomeGenPlanetOneSea;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.material.Material;
@@ -26,7 +26,11 @@ public class PolulosBiomes extends BiomeGenBaseGC {
 
 	@Override
 	public BiomeDecorator createBiomeDecorator() {
-		return new BiomeDecoratorOther();
+		return new BiomeDecoratorPolulos();
+	}
+
+	protected BiomeDecoratorPolulos getBiomeDecorator() {
+		return (BiomeDecoratorPolulos) this.decorator;
 	}
 
 	@Override
@@ -53,7 +57,7 @@ public class PolulosBiomes extends BiomeGenBaseGC {
 
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
-			//	} else if (iblockstate2.getBlock() == stoneBlockState.getBlock()) {
+					//	} else if (iblockstate2.getBlock() == stoneBlockState.getBlock()) {
 					if (j == -1) {
 						if (k <= 0) {
 							topState = AIR;

@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import io.github.nagol2003.init.InitBlocks;
-import io.github.nagol2003.util.BlockUtil;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -36,7 +32,6 @@ public abstract class APGenTreeBase extends WorldGenAbstractTree {
 	protected int minCrownSize;
 	protected int maxCrownSize;
 
-	protected ArrayList<IBlockState> validGroundBlocks ;
 	protected ArrayList<Material> canGrowIntoMaterials;
 
 	public APGenTreeBase(boolean notify) {
@@ -62,14 +57,6 @@ public abstract class APGenTreeBase extends WorldGenAbstractTree {
 		this.setMaxTrunkSize(0);
 		this.setMinCrownSize(0);
 		this.setMaxCrownSize(0);
-
-		// Each tree sub-class is responsible for using (or not using) this list as part of its generation logic.
-		this.validGroundBlocks = new ArrayList<>(Arrays.asList(
-				InitBlocks.OGNIOUSGRASS.getDefaultState(),
-				InitBlocks.POLULOSDIRT.getDefaultState(),
-				BlockUtil.getStateDirt(BlockDirt.DirtType.PODZOL),
-				BlockUtil.getStateSand(BlockSand.EnumType.RED_SAND)
-				));
 
 		this.canGrowIntoMaterials = new ArrayList<>(Arrays.asList(
 				Material.AIR,
@@ -113,13 +100,11 @@ public abstract class APGenTreeBase extends WorldGenAbstractTree {
 			return false;
 		}
 
-		for (IBlockState element : this.validGroundBlocks) {
-			if (g == element) {
-				return true;
-			}
+		if(g.getBlock() == Blocks.AIR || g.getBlock() == Blocks.WATER) {
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	protected boolean isGroundValid(World world, ArrayList<BlockPos> trunkPos) {
@@ -329,16 +314,4 @@ public abstract class APGenTreeBase extends WorldGenAbstractTree {
 		this.maxCrownSize = maxCrownSize;
 		return this;
 	}
-
-	public ArrayList<IBlockState> getValidGroundBlocks() {
-
-		return validGroundBlocks;
-	}
-
-	public APGenTreeBase setValidGroundBlocks(ArrayList<IBlockState> validGroundBlocks) {
-
-		this.validGroundBlocks = validGroundBlocks;
-		return this;
-	}
-
 }

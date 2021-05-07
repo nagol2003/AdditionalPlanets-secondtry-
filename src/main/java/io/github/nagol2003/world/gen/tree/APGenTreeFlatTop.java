@@ -1,6 +1,5 @@
 package io.github.nagol2003.world.gen.tree;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -10,13 +9,12 @@ import net.minecraft.world.World;
 public class APGenTreeFlatTop extends APGenTreeBase {
 
 	public APGenTreeFlatTop(Block log, Block leaves) {
-		super();
+		super(true);
 		this.setLogBlock(log.getDefaultState());
 		this.setLeavesBlock(leaves.getDefaultState());
 		this.trunkSize = 10;
 		this.setMaxCrownSize(5);
 		this.setMinCrownSize(3);
-		this.setValidGroundBlocks(new ArrayList<>());
 	}
 
 	@Override

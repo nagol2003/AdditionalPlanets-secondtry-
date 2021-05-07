@@ -2,18 +2,13 @@ package io.github.nagol2003.celestial.planets.Polulos.biome.gen;
 
 import java.util.Random;
 
-import io.github.nagol2003.celestial.planets.Polulos.biome.ChunkProviderPolulos;
 import io.github.nagol2003.celestial.planets.Polulos.biome.PolulosBiomes;
 import io.github.nagol2003.entities.poluloscrab.EntityPolulosCrab;
-import io.github.nagol2003.init.EntityInit;
 import io.github.nagol2003.init.InitBlocks;
-import micdoodle8.mods.galacticraft.planets.mars.world.gen.BiomeMars;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.common.BiomeDictionary;
 
@@ -21,19 +16,19 @@ public class BiomePolulosDesert extends PolulosBiomes {
 
 	public BiomePolulosDesert(BiomeProperties properties) {
 		super(properties);
-        this.topBlock = InitBlocks.POLULOSSAND.getDefaultState(); //TODO change this
-        this.fillerBlock = InitBlocks.POLULOSSAND.getDefaultState(); //TODO change this
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityPolulosCrab.class, 25, 100, 50));
-        //add(new SpawnListEntry(EntityPolulosCrab.class, 50, 100, 20));
-        this.spawnableCreatureList.clear();
-        this.spawnableWaterCreatureList.clear();
+		this.topBlock = InitBlocks.POLULOSSAND.getDefaultState(); //TODO change this
+		this.fillerBlock = InitBlocks.POLULOSSAND.getDefaultState(); //TODO change this
+		this.spawnableMonsterList.add(new SpawnListEntry(EntityPolulosCrab.class, 25, 100, 50));
+		this.spawnableCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.getBiomeDecorator().treesPerChunk = 4;
 	}
 
 	@Override
 	public void registerTypes(Biome b) {
-            BiomeDictionary.addTypes(b, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.SANDY);
-
+		BiomeDictionary.addTypes(b, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.SANDY);
 	}
+
 	@Override
 	public void generateBiomeSurface(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,
 			double noiseVal) {

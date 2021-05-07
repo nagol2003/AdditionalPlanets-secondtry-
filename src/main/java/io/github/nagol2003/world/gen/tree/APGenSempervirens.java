@@ -1,6 +1,5 @@
 package io.github.nagol2003.world.gen.tree;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -13,8 +12,13 @@ public class APGenSempervirens extends APGenTreeBase {
 		super();
 		this.setLogBlock(log.getDefaultState());
 		this.setLeavesBlock(leaves.getDefaultState());
-		this.trunkSize = 10;
-		this.setValidGroundBlocks(new ArrayList<>());
+		this.setMinTrunkSize(11);
+		this.setMaxTrunkSize(21);
+	}
+
+	public APGenSempervirens setCanGenerateOnSand() {
+		super.setTreesCanGenerateOnSand(true);
+		return this;
 	}
 
 	@Override
